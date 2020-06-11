@@ -66,8 +66,8 @@ def add_light_sh(vertices, triangles, colors, sh_coeff):
     '''
     assert vertices.shape[0] == colors.shape[0]
     nver = vertices.shape[0]
-    normal = get_normal(vertices, triangles) # [nver, 3]
-    sh = np.array((np.ones(nver), n[:,0], n[:,1], n[:,2], n[:,0]*n[:,1], n[:,0]*n[:,2], n[:,1]*n[:,2], n[:,0]**2 - n[:,1]**2, 3*(n[:,2]**2) - 1)) # [nver, 9]
+    n = get_normal(vertices, triangles) # [nver, 3]
+    sh = np.array((np.ones(nver), n[:,0], n[:,1], n[:,2], n[:,0]*n[:,1], n[:,0]*n[:,2], n[:,1]*n[:,2], n[:,0]**2 - n[:,1]**2, 3*(n[:,2]**2) - 1)).T # [nver, 9]
     ref = sh.dot(sh_coeff) #[nver, 1]
     lit_colors = colors*ref
     return lit_colors

@@ -37,7 +37,7 @@ class  MorphabelModel(object):
         self.ntri = self.model['tri'].shape[0]
         self.n_shape_para = self.model['shapePC'].shape[1]
         self.n_exp_para = self.model['expPC'].shape[1]
-        self.n_tex_para = self.model['texMU'].shape[1]
+        self.n_tex_para = self.model['texPC'].shape[1]
         
         self.kpt_ind = self.model['kpt_ind']
         self.triangles = self.model['tri']
@@ -46,7 +46,7 @@ class  MorphabelModel(object):
     # ------------------------------------- shape: represented with mesh(vertices & triangles(fixed))
     def get_shape_para(self, type = 'random'):
         if type == 'zero':
-            sp = np.random.zeros((self.n_shape_para, 1))
+            sp = np.zeros((self.n_shape_para, 1))
         elif type == 'random':
             sp = np.random.rand(self.n_shape_para, 1)*1e04
         return sp
@@ -68,7 +68,9 @@ class  MorphabelModel(object):
         Returns:
             vertices: (nver, 3)
         '''
-        vertices = self.model['shapeMU'] + self.model['shapePC'].dot(shape_para) + self.model['expPC'].dot(exp_para)
+        vertices = self.model['shapeMU'] + \
+                   self.model['shapePC'].dot(shape_para) + \
+                   self.model['expPC'].dot(exp_para)
         vertices = np.reshape(vertices, [int(3), int(len(vertices)/3)], 'F').T
 
         return vertices
@@ -88,7 +90,7 @@ class  MorphabelModel(object):
         Returns:
             colors: (nver, 3)
         '''
-        colors = self.model['texMU'] + self.model['texPC'].dot(tex_para*self.model['texEV'])
+        colors = self.model['texMU'] + self.model['texPC'].dot(tex_para)
         colors = np.reshape(colors, [int(3), int(len(colors)/3)], 'F').T/255.  
         
         return colors

@@ -51,7 +51,7 @@ def rasterize_triangles_core(
                 np.ndarray[int, ndim=2, mode="c"] triangles not None, 
                 np.ndarray[float, ndim=2, mode = "c"] depth_buffer not None,
                 np.ndarray[int, ndim=2, mode = "c"] triangle_buffer not None,
-                np.ndarray[float, ndim=2, mode = "c"] barycentric_weight not None,
+                np.ndarray[float, ndim=3, mode = "c"] barycentric_weight not None,
                 int nver, int ntri,
                 int h, int w
                 ):   

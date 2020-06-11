@@ -201,12 +201,12 @@ def fit_points(x, X_ind, model, n_sp, n_ep, max_iter = 4):
         # expression
         shape = shapePC.dot(sp)
         shape = np.reshape(shape, [int(len(shape)/3), 3]).T
-        ep = estimate_expression(x, shapeMU, expPC, model['expEV'][:n_ep,:], shape, s, R, t[:2], lamb = 20)
+        ep = estimate_expression(x, shapeMU, expPC, model['expEV'][:n_ep,:], shape, s, R, t[:2], lamb = 0.002)
 
         # shape
         expression = expPC.dot(ep)
         expression = np.reshape(expression, [int(len(expression)/3), 3]).T
-        sp = estimate_shape(x, shapeMU, shapePC, model['shapeEV'][:n_sp,:], expression, s, R, t[:2], lamb = 40)
+        sp = estimate_shape(x, shapeMU, shapePC, model['shapeEV'][:n_sp,:], expression, s, R, t[:2], lamb = 0.004)
 
     return sp, ep, s, R, t
 

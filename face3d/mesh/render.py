@@ -36,7 +36,7 @@ def rasterize_triangles(vertices, triangles, h, w):
     '''
 
     # initial 
-    depth_buffer = np.zeros([h, w]) - 999999. #set the initial z to the farest position
+    depth_buffer = np.zeros([h, w], dtype = np.float32) - 999999. #set the initial z to the farest position
     triangle_buffer = np.zeros([h, w], dtype = np.int32) - 1  # if tri id = -1, the pixel has no triangle correspondance
     barycentric_weight = np.zeros([h, w, 3], dtype = np.float32)  # 
     
@@ -48,6 +48,8 @@ def rasterize_triangles(vertices, triangles, h, w):
                 depth_buffer, triangle_buffer, barycentric_weight, 
                 vertices.shape[0], triangles.shape[0], 
                 h, w)
+    return depth_buffer, triangle_buffer, barycentric_weight
+
 
 def render_colors(vertices, triangles, colors, h, w, c = 3, BG = None):
     ''' render mesh with colors

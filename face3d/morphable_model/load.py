@@ -34,7 +34,7 @@ def load_BFM(model_path):
 
     # change dtype from double(np.float64) to np.float32, 
     # since big matrix process(espetially matrix dot) is too slow in python.
-    model['shapeMU'] = (model['shapeMU'] + model['expMU']).astype(np.float32)
+    model['shapeMU'] = model['shapeMU'].astype(np.float32)#(model['shapeMU'] + model['expMU']).astype(np.float32)
     model['shapePC'] = model['shapePC'].astype(np.float32)
     model['shapeEV'] = model['shapeEV'].astype(np.float32)
     model['expEV'] = model['expEV'].astype(np.float32)
