@@ -97,4 +97,4 @@ clearvars -except model model_info UV
 save 'Out/BFM.mat' model
 save 'Out/BFM_info.mat' model_info
 save 'Out/BFM_UV.mat' UV
-copyfile('3ddfa/pncc_code.mat', 'Out/pncc_code.mat')
+% copyfile('3ddfa/pncc_code.mat', 'Out/pncc_code.mat')
