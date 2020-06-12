@@ -19,6 +19,8 @@
     download [HPEN]
 
     copy  *.mat to 3ddfa/  
+    
+    See generate.m for the exact .mat file name
 
     
 
